@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -14,8 +22,8 @@ export class UserController {
 
   @Get('/:id')
   getOneUser(@Param('id') id: string) {
-  // getOneUser(@Param() param: any) {
-  //   const { id, startDate, endDate } = param;
+    // getOneUser(@Param() param: any) {
+    //   const { id, startDate, endDate } = param;
     return this.userService.getOneById(id);
   }
 
@@ -34,4 +42,3 @@ export class UserController {
     return this.userService.updateUser(id, user);
   }
 }
-
