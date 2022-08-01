@@ -26,19 +26,19 @@ export class UserController {
     //   const { id, startDate, endDate } = param;
     return this.userService.getOneById(id);
   }
-
-  @Post()
-  createUser(@Body() user: CreateUserDto) {
-    return this.userService.createUser(user);
-  }
-
-  @Delete('/:id')
-  deleteUser(@Param('id') id: string) {
-    this.userService.deleteUser(id);
-  }
-
-  @Patch('/:id')
-  updateUser(@Param('id') id: string, @Body() user: UpdateUserDto) {
-    return this.userService.updateUser(id, user);
-  }
+  //
+  // @Post()
+  // createUser(@Body() user: CreateUserDto) {
+  //   return this.userService.createUser(user);
+  // }
+  //
+  // @Delete('/:id')
+  // deleteUser(@Param('id') id: string) {
+  //   this.userService.deleteUser(id);
+  // }
+  //
+  // @Patch('/:id')
+  // updateUser(@Param('id') id: string, @Body() user: UpdateUserDto) {
+  //   return this.userService.updateUser(id, user);
+  // }
 }
