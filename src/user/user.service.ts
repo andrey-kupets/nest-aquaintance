@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
 
 import { PrismaService } from 'src/core/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UnknownElementException } from '@nestjs/core/errors/exceptions/unknown-element.exception';
 
 @Injectable()
 export class UserService {
@@ -15,9 +16,15 @@ export class UserService {
   }
 
   async getOneById(id: string): Promise<User> {
-    return this.prismaService.user.findUnique({
+    const userById = await this.prismaService.user.findUnique({
       where: { id }
     });
+
+    if (!userById) {
+      throw new HttpException( 'there is no such user in DB', 400);
+    }
+
+    return userById;
   }
 
   async getUserByEmail(email: string): Promise<User> {

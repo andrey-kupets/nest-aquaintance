@@ -16,9 +16,10 @@ export class AuthService {
   }
 
   async login(authUser: LoginUserDto) {
-    const user = await this.validateUser(authUser);
-    console.log('USER', user)
-    return this.generateToken(user);
+    const userAuthorized = await this.validateUser(authUser);
+    const { access_token } = await this.generateToken(userAuthorized);
+
+    return {user: userAuthorized, access_token};
   }
 
   async register(registerUser: RegisterUserDto) {
@@ -28,12 +29,11 @@ export class AuthService {
     }
 
     const hashPass = await bcrypt.hash(registerUser.password, 8);
-    const userRegistered = await this.userService.createUser({
+
+    return await this.userService.createUser({
       ...registerUser,
       password: hashPass
     });
-
-    return this.generateToken(userRegistered);
   }
 
   private async validateUser(user: LoginUserDto) {
@@ -50,7 +50,9 @@ export class AuthService {
   private async generateToken(user: User) {
     const payload = {email: user.email, name: user.name, id: user.id};
     return {
-      token: this.jwtService.sign(payload)
+      access_token: this.jwtService.sign(payload, {
+        privateKey: 'secret'
+      })
     };
   }
 }
