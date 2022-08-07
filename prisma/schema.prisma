@@ -20,3 +20,8 @@ model User {
   createdAt  DateTime @default(now()) @db.Timestamp
   updatedAt  DateTime @default(now()) @db.Timestamp
 }
+
+model Auth {
+  user_id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  access_token String
+}
