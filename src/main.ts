@@ -10,7 +10,7 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const swaggerDescription = fs.readdirSync(join(__dirname, '..', 'description.markdown'));
+  const swaggerDescription = fs.readFileSync(join(__dirname, '..', 'description.markdown'));
   const config = new DocumentBuilder()
     .setTitle('Nest for the first')
     .setDescription(swaggerDescription.toString())
