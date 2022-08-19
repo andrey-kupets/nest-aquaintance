@@ -1,0 +1,438 @@
+{
+	"info": {
+		"_postman_id": "7500a244-3710-4c21-bba5-f81597af49d6",
+		"name": "nest-acquaintance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10888678"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"id\", pm.response.json().id);\r",
+									"pm.test(\"Status code is 201\", () => {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Correct response data\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    // console.log(jsonData); // for postman console view\r",
+									"    pm.expect(jsonData.id).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.name).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.age).to.be.a(\"number\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"AAAAAA\",\r\n    \"email\": \"andrii@gmail.com\",\r\n    \"age\": 21,\r\n    \"password\": \"qweqwe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_HOST}}/users",
+							"host": [
+								"{{API_HOST}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"AAAAAA\",\r\n    \"email\": \"andrii@gmail.com\",\r\n    \"age\": 21,\r\n    \"password\": \"qweqwe\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_HOST}}/users",
+									"host": [
+										"{{API_HOST}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "198"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c6-4vug/iWk1yihqngjDyFyvC+uB84\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Aug 2022 07:59:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"62f36567451919c4a48a335e\",\n    \"name\": \"AAAAAA\",\n    \"age\": 21,\n    \"email\": \"andrii@gmail.com\",\n    \"password\": \"qweqwe\",\n    \"status\": false,\n    \"createdAt\": \"2022-08-10T07:59:35.000Z\",\n    \"updatedAt\": \"2022-08-10T07:59:35.000Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "users",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => { // e.g. for uploading photo request\r",
+									"    console.log('waiting');\r",
+									"}, 2000);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Correct response data\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    jsonData.forEach((el) => {\r",
+									"        pm.expect(el.id).to.be.a(\"string\");\r",
+									"        pm.expect(el.name).to.be.a(\"string\");\r",
+									"        pm.expect(el.age).to.be.a(\"number\");\r",
+									"        console.log(el.id);\r",
+									"    });\r",
+									"//     pm.expect(jsonData[0].id).to.be.a(\"string\");\r",
+									"//     pm.expect(jsonData[0].name).to.be.a(\"string\");\r",
+									"//     pm.expect(jsonData[0].age).to.be.a(\"number\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_HOST}}/users",
+							"host": [
+								"{{API_HOST}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_HOST}}/users",
+									"host": [
+										"{{API_HOST}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1640"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"668-+42z2Jmo1ToZHMgRi6Wj9tStJp0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 19 Aug 2022 13:14:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"62e98911fd36e8764b2b49b4\",\n        \"name\": \"1111111\",\n        \"age\": 21,\n        \"email\": \"andrii@111\",\n        \"password\": \"fvdfvdf434\",\n        \"status\": true,\n        \"createdAt\": \"2022-08-02T20:29:04.000Z\",\n        \"updatedAt\": \"2022-08-02T20:29:04.000Z\"\n    },\n    {\n        \"id\": \"62e990d7aaf75cc3e4684e7b\",\n        \"name\": \"333333\",\n        \"age\": 21,\n        \"email\": \"andrii@333\",\n        \"password\": \"gbdgbet\",\n        \"status\": false,\n        \"createdAt\": \"2022-08-02T21:02:14.000Z\",\n        \"updatedAt\": \"2022-08-02T21:02:14.000Z\"\n    },\n    {\n        \"id\": \"62eefb964a1d26ce499f4ab0\",\n        \"name\": \"AAAAAA\",\n        \"age\": 21,\n        \"email\": \"andrii@gmail.com\",\n        \"password\": \"$2a$08$y9nTrB5V1e37FUfivdenz.7kF3eQCQEscjp.QvEkLYUC1wKSWgCk6\",\n        \"status\": false,\n        \"createdAt\": \"2022-08-06T23:39:02.000Z\",\n        \"updatedAt\": \"2022-08-06T23:39:02.000Z\"\n    },\n    {\n        \"id\": \"62f1640e0f21a10050d1cc44\",\n        \"name\": \"AAAAAA\",\n        \"age\": 21,\n        \"email\": \"andrii@gmail.com\",\n        \"password\": \"qweqwe\",\n        \"status\": false,\n        \"createdAt\": \"2022-08-08T19:29:16.000Z\",\n        \"updatedAt\": \"2022-08-08T19:29:16.000Z\"\n    },\n    {\n        \"id\": \"62f165130f21a10050d1cc45\",\n        \"name\": \"AAAAAA\",\n        \"age\": 21,\n        \"email\": \"andrii@gmail.com\",\n        \"password\": \"qweqwe\",\n        \"status\": false,\n        \"createdAt\": \"2022-08-08T19:33:39.000Z\",\n        \"updatedAt\": \"2022-08-08T19:33:39.000Z\"\n    },\n    {\n        \"id\": \"62f36567451919c4a48a335e\",\n        \"name\": \"AAAAAA\",\n        \"age\": 21,\n        \"email\": \"andrii@gmail.com\",\n        \"password\": \"qweqwe\",\n        \"status\": false,\n        \"createdAt\": \"2022-08-10T07:59:35.000Z\",\n        \"updatedAt\": \"2022-08-10T07:59:35.000Z\"\n    },\n    {\n        \"id\": \"62ff8a10c665e5de86913c8a\",\n        \"name\": \"AAAAAA\",\n        \"age\": 21,\n        \"email\": \"andrii@gmail.com\",\n        \"password\": \"qweqwe\",\n        \"status\": false,\n        \"createdAt\": \"2022-08-19T13:03:10.000Z\",\n        \"updatedAt\": \"2022-08-19T13:03:10.000Z\"\n    },\n    {\n        \"id\": \"62ff8b86c665e5de86913c8c\",\n        \"name\": \"AAAAAA\",\n        \"age\": 21,\n        \"email\": \"andrii@gmail.com\",\n        \"password\": \"qweqwe\",\n        \"status\": false,\n        \"createdAt\": \"2022-08-19T13:09:26.000Z\",\n        \"updatedAt\": \"2022-08-19T13:09:26.000Z\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "userById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const id = pm.environment.get(\"id\");\r",
+									"\r",
+									"pm.test(\"Correct response data\", () => {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.id).to.equal(id);\r",
+									"    pm.expect(jsonData.name).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.age).to.be.a(\"number\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(() => { // e.g. for uploading photo request\r",
+									"    console.log('waiting');\r",
+									"}, 3000);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJpaUBnbWFpbC5jb20iLCJuYW1lIjoiQUFBQUFBIiwiaWQiOiI2MmVlZmI5NjRhMWQyNmNlNDk5ZjRhYjAiLCJpYXQiOjE2NTk4MjkxNDZ9.J1oQyRBpSmctnGnr46GABZaU7B2uVdvqcd1QGDF74UU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_HOST}}/users/{{id}}",
+							"host": [
+								"{{API_HOST}}"
+							],
+							"path": [
+								"users",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"44444\",\r\n    \"age\": 777,\r\n    \"status\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_HOST}}/users/:id",
+							"host": [
+								"{{API_HOST}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "62e98b5efd36e8764b2b49b6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_HOST}}/users/:id",
+							"host": [
+								"{{API_HOST}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "62e98b5efd36e8764b2b49b6"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"andrii@gmail.com\",\r\n    \"password\": \"asdasd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_HOST}}/auth/login",
+							"host": [
+								"{{API_HOST}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"AAAAAA\",\r\n    \"email\": \"andrii@gmail.com\",\r\n    \"age\": 21,\r\n    \"password\": \"asdasd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_HOST}}/auth/register",
+							"host": [
+								"{{API_HOST}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
