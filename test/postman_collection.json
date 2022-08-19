@@ -16,7 +16,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.environment.set(\"id\", pm.response.json().id);\r",
+									"pm.environment.set(\"userId\", pm.response.json().id);\r",
 									"pm.test(\"Status code is 201\", () => {\r",
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
@@ -138,15 +138,15 @@
 								"exec": [
 									"pm.test(\"Correct response data\", () => {\r",
 									"    const jsonData = pm.response.json();\r",
-									"    jsonData.forEach((el) => {\r",
-									"        pm.expect(el.id).to.be.a(\"string\");\r",
-									"        pm.expect(el.name).to.be.a(\"string\");\r",
-									"        pm.expect(el.age).to.be.a(\"number\");\r",
-									"        console.log(el.id);\r",
-									"    });\r",
-									"//     pm.expect(jsonData[0].id).to.be.a(\"string\");\r",
-									"//     pm.expect(jsonData[0].name).to.be.a(\"string\");\r",
-									"//     pm.expect(jsonData[0].age).to.be.a(\"number\");\r",
+									"    // jsonData.forEach((el) => {\r",
+									"    //     pm.expect(el.id).to.be.a(\"string\");\r",
+									"    //     pm.expect(el.name).to.be.a(\"string\");\r",
+									"    //     pm.expect(el.age).to.be.a(\"number\");\r",
+									"    //     console.log(el.id);\r",
+									"    // });\r",
+									"    pm.expect(jsonData[0].id).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData[0].name).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData[0].age).to.be.a(\"number\");\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -248,7 +248,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"const id = pm.environment.get(\"id\");\r",
+									"const id = pm.environment.get(\"userId\");\r",
 									"\r",
 									"pm.test(\"Correct response data\", () => {\r",
 									"    const jsonData = pm.response.json();\r",
@@ -295,13 +295,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{API_HOST}}/users/{{id}}",
+							"raw": "{{API_HOST}}/users/{{userId}}",
 							"host": [
 								"{{API_HOST}}"
 							],
 							"path": [
 								"users",
-								"{{id}}"
+								"{{userId}}"
 							]
 						}
 					},
